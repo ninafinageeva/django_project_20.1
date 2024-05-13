@@ -2,3 +2,9 @@ asgiref==3.8.1
 Django==5.0.6
 sqlparse==0.5.0
 tzdata==2024.1
+psycopg2-binary==2.9.9
+pip==24.0
+black==24.4.2
+Pillow==10.3.0
+ipython==8.24.0
+

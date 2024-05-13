@@ -15,11 +15,11 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 class Product(models.Model):
     name = models.CharField(
-        max_length=50,
+        max_length=150,
         verbose_name="Наименование",
         help_text="Введите наименование продукта",
     )
@@ -45,8 +45,7 @@ class Product(models.Model):
         null=True,
         related_name='products'
     )
-    price = models.IntegerField(
-        max_length=10, verbose_name="Цена", help_text="Введите цену"
+    price = models.IntegerField(verbose_name="Цена", help_text="Введите цену"
     )
     created_at = models.DateField(
         verbose_name="Дата создания", help_text="Введите дату создания"
@@ -72,4 +71,4 @@ class Product(models.Model):
         ]
 
     def __str__(self):
-        return self.name, self.price
+        return f"{self.name}, {self.price}"
