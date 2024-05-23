@@ -18,6 +18,7 @@ class Category(models.Model):
         return f"{self.name}"
 
 class Product(models.Model):
+    objects = None
     name = models.CharField(
         max_length=150,
         verbose_name="Наименование",
