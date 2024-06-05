@@ -20,7 +20,7 @@ class BlogDetailView(DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         self.object.number_of_views += 1
-        self.object.save()
+        self.object.save(update_fields=['number_of_views'])
         return self.object
 
 class BlogCreateView(CreateView):
