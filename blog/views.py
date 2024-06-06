@@ -2,7 +2,6 @@ from django.urls import reverse_lazy, reverse
 from django.utils.text import slugify
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-
 from blog.models import Blog
 
 
@@ -14,6 +13,7 @@ class BlogListView(ListView):
         queryset = queryset.filter(publication_sign=True)
         return queryset
 
+
 class BlogDetailView(DetailView):
     model = Blog
 
@@ -22,6 +22,7 @@ class BlogDetailView(DetailView):
         self.object.number_of_views += 1
         self.object.save(update_fields=['number_of_views'])
         return self.object
+
 
 class BlogCreateView(CreateView):
     model = Blog
@@ -35,6 +36,7 @@ class BlogCreateView(CreateView):
             new_article.save()
         return super().form_valid(form)
 
+
 class BlogUpdateView(UpdateView):
     model = Blog
     fields = ("title", "content", "preview")
@@ -42,6 +44,7 @@ class BlogUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('blog:detail', args=[self.kwargs.get('pk')])
+
 
 class BlogDeleteView(DeleteView):
     model = Blog

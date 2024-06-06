@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(
         max_length=50,
@@ -16,6 +17,7 @@ class Category(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
 
 class Product(models.Model):
     objects = None
@@ -47,7 +49,7 @@ class Product(models.Model):
         related_name='products'
     )
     price = models.IntegerField(verbose_name="Цена", help_text="Введите цену"
-    )
+                                )
     created_at = models.DateField(
         verbose_name="Дата создания", help_text="Введите дату создания"
     )

@@ -14,14 +14,14 @@ class Command(BaseCommand):
     def json_read_categories():
         with open('data.json', encoding='utf-8') as file:
             data = json.load(file)['property']
-            #print(data)
+            # print(data)
         return [item for item in data if item['model'] == 'catalog.category']
 
     @staticmethod
     def json_read_products():
         with open('data.json', encoding='utf-8') as file:
             data = json.load(file)['property']
-            #print()
+            # print()
         return [item for item in data if item['model'] == 'catalog.product']
 
     def handle(self, *args, **options):
@@ -38,8 +38,7 @@ class Command(BaseCommand):
                     id=category['pk'],
                     name=category['fields']['name'],
                     description=category['fields']['description'])
-                )
-
+            )
 
         # Создаем объекты в базе с помощью метода bulk_create()
         Category.objects.bulk_create(category_for_create)
@@ -53,8 +52,7 @@ class Command(BaseCommand):
                     description=product["fields"]["description"],
                     category=Category.objects.get(pk=product["fields"]["category"]),
                     price=product["fields"]["price"]),
-                )
+            )
 
         # Создаем объекты в базе с помощью метода bulk_create()
         Product.objects.bulk_create(product_for_create)
-

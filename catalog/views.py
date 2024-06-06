@@ -1,5 +1,4 @@
 from django.forms import inlineformset_factory
-from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -29,10 +28,12 @@ class ProductListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
 
+
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:homepage')
+
 
 class ProductUpdateView(UpdateView):
     model = Product
@@ -59,8 +60,7 @@ class ProductUpdateView(UpdateView):
         else:
             return self.render_to_response(self.get_context_data(form=form, formset=formset))
 
+
 class ProductDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:homepage')
-
-
