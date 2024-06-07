@@ -9,5 +9,7 @@ Pillow==10.3.0
 ipython==8.24.0
 slugify==0.0.1
 pytils==0.4.1
+django==4.2.2
+
 
 
