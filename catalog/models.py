@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 from users.models import User
 
@@ -49,10 +48,9 @@ class Product(models.Model):
         help_text="Введите категорию",
         blank=True,
         null=True,
-        related_name='products'
+        related_name="products",
     )
-    price = models.IntegerField(verbose_name="Цена", help_text="Введите цену"
-                                )
+    price = models.IntegerField(verbose_name="Цена", help_text="Введите цену")
     created_at = models.DateField(
         verbose_name="Дата создания", help_text="Введите дату создания"
     )
@@ -61,8 +59,21 @@ class Product(models.Model):
         help_text="Введите дату последнего изменения",
     )
     manufactured_at = models.DateField(
-        verbose_name='Дата производства продукта',
-        help_text='Введите дату производства продукта'
+        verbose_name="Дата производства продукта",
+        help_text="Введите дату производства продукта",
+    )
+    publication_sign = models.BooleanField(
+        verbose_name="Признак публикации",
+        default=False,
+        help_text="Укажите признак публикации",
+    )
+    owner = models.ForeignKey(
+        User,
+        verbose_name="Имя создателя",
+        help_text="Укажите имя создателя товара",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
     )
 
     class Meta:
@@ -74,6 +85,11 @@ class Product(models.Model):
             "price",
             "created_at",
             "updated_at",
+        ]
+        permissions = [
+            ("can_edit_publication_sign", "Can edit publication sign"),
+            ("can_edit_description", "Can edit description"),
+            ("can_change_category", "Can change category")
         ]
 
     def __str__(self):

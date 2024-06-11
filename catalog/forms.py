@@ -14,6 +14,13 @@ class StyleMixin(ModelForm):
                 field.widget.attrs['class'] = 'form-control'
 
 
+class ProductModeratorForm(StyleMixin, forms.ModelForm):
+    """Форма для редактирования модератором"""
+    class Meta:
+        model = Product
+        fields = ('description', 'category', 'publication_sign')
+
+
 class ProductForm(StyleMixin, forms.ModelForm):
     class Meta:
         model = Product
@@ -41,6 +48,8 @@ class ProductForm(StyleMixin, forms.ModelForm):
 
 
 class VersionForm(StyleMixin, forms.ModelForm):
+    """Форма для создания версии товара"""
+
     class Meta:
         model = Version
         fields = '__all__'
